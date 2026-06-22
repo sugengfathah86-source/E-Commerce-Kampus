@@ -1,166 +1,230 @@
-# E-Commerce Kampus (CodeIgniter 3)
+# 🛒 KampusMart — E-Commerce Marketplace Mahasiswa
 
-Marketplace sederhana khusus mahasiswa, dibangun menggunakan **CodeIgniter 3** dengan pola arsitektur **MVC**, database **MySQL**, dan login terbatas hanya untuk email kampus melalui **Google Sign-In (OAuth 2.0)**.
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CodeIgniter-3.x-EF4223?style=for-the-badge&logo=codeigniter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"/>
+</p>
 
----
+<p align="center">
+  Platform marketplace khusus mahasiswa Universitas Jenderal Soedirman (UNSOED) untuk jual beli produk dan jasa di lingkungan kampus.
+</p>
 
-## Fitur Utama
-
-### Autentikasi
-- Login menggunakan akun Google (OAuth 2.0)
-- Validasi domain — hanya email `@mhs.unsoed.ac.id` yang dapat masuk
-- Pendaftaran otomatis saat login pertama kali
-
-### Dual Role (Pembeli & Penjual)
-- Setiap user awalnya berstatus **pembeli**
-- Tombol **"Buka Toko"** mengubah status menjadi **pembeli + penjual** dalam akun yang sama
-- Penjual mendapat akses ke **Dashboard Toko**
-
-### Marketplace
-- Daftar produk dengan filter kategori & pencarian
-- Detail produk per item
-- Keranjang belanja (dikelompokkan per toko — satu order = satu penjual)
-
-### Checkout & Pengiriman
-- Sistem **zona pengiriman** (Area Kampus = gratis ongkir, Kost Dekat Kampus, Luar Kampus)
-- Ongkir dihitung otomatis berdasarkan zona dipilih
-
-### Pembayaran Semi-Manual
-- Setelah checkout, link **WhatsApp ke penjual** otomatis terisi detail pesanan
-- Pembeli dapat **upload bukti bayar** (screenshot QRIS)
-- Penjual update status pesanan: `pending` → `dikonfirmasi` → `diproses` → `selesai`
-
-### Dashboard Penjual
-- Ringkasan: total produk, total omzet, jumlah order, order pending
-- CRUD produk (dengan upload foto)
-- Kelola pesanan masuk + lihat bukti bayar + update status
+<p align="center">
+  <a href="http://kelompok10-kelas-b.tekkom.web.id/">🌐 Live Demo</a>
+</p>
 
 ---
 
-## Teknologi
+## 👥 Tim Pengembang
 
-| Komponen | Teknologi |
-|---|---|
-| Framework | CodeIgniter 3 (pola MVC) |
-| Database | MySQL, akses via Query Builder (Active Record) |
-| Autentikasi | Google OAuth 2.0 (cURL native, tanpa SDK eksternal) |
-| Tampilan | Bootstrap 5 (CDN) |
+| Nama | NIM | Peran |
+|------|-----|-------|
+| Fathah Ikhwansyah | H1H024063 | Backend & Database |
+| Ibnu Abbas | H1H024038 | Frontend & Fitur Transaksi |
 
----
-
-## Struktur Database
-
-| Tabel | Keterangan |
-|---|---|
-| `users` | Data akun (pembeli/penjual), dibedakan kolom `role` |
-| `kategori` | Kategori produk |
-| `produk` | Data barang dagangan |
-| `shipping_zones` | Daftar zona pengiriman & ongkirnya |
-| `cart` | Keranjang belanja sementara |
-| `orders` | Header transaksi |
-| `order_items` | Detail item per transaksi |
-
-**Relasi (JOIN) yang dipakai:**
-- `produk` JOIN `users` (nama penjual), JOIN `kategori` (nama kategori)
-- `orders` JOIN `users` (nama pembeli & penjual), JOIN `shipping_zones` (nama zona)
-- `cart` JOIN `produk` JOIN `users`
+**Mata Kuliah:** Pemrograman Web II  
+**Dosen Pengampu:** Mohammad Irham Akbar  
+**Kelas:** Pemrograman Web I B  
+**Universitas:** Universitas Jenderal Soedirman
 
 ---
 
-## Struktur Folder (MVC)
+## 📋 Tentang Aplikasi
+
+KampusMart adalah aplikasi e-commerce berbasis web yang dirancang khusus sebagai marketplace bagi mahasiswa UNSOED. Aplikasi ini memungkinkan mahasiswa untuk:
+
+- 🛍️ **Berbelanja** produk dari sesama mahasiswa
+- 🏪 **Membuka toko** dan berjualan online
+- 💬 **Berkomunikasi** langsung dengan penjual via chat
+- ⭐ **Menyimpan** produk favorit di wishlist
+- 🎟️ **Menggunakan voucher** dan poin untuk diskon
+
+---
+
+## ✨ Fitur Utama
+
+### 👤 Autentikasi
+- Registrasi manual (khusus email `@mhs.unsoed.ac.id`)
+- Login dengan email & password
+- Login via Google OAuth 2.0
+
+### 🛍️ Pembeli
+- Jelajahi produk berdasarkan kategori (Jajanan, Jasa, ATK, Elektronik, Lainnya)
+- Pencarian dan filter produk (kategori, harga min/max)
+- Keranjang belanja
+- Checkout dengan voucher diskon & poin
+- Upload bukti pembayaran
+- Riwayat pesanan
+- Wishlist produk favorit
+- Follow toko favorit
+- Chat dengan penjual
+- Notifikasi real-time
+
+### 🏪 Penjual
+- Dashboard toko
+- Manajemen produk (tambah, edit, hapus)
+- Variasi produk & manajemen stok
+- Zona pengiriman (shipping zones)
+- Manajemen pesanan masuk
+- Laporan penjualan dengan export CSV
+- Sistem konsinyasi (titip jual)
+- Pembuatan voucher diskon
+
+---
+
+## 🛠️ Teknologi
+
+| Kategori | Teknologi |
+|----------|-----------|
+| Backend | PHP 8.x, CodeIgniter 3 |
+| Frontend | Bootstrap 5.3, Bootstrap Icons |
+| Database | MySQL 8.0 |
+| Web Server | Apache |
+| Dev Tools | VS Code, Git, phpMyAdmin |
+| Hosting | VPS Hestia Control Panel |
+| Auth | Google OAuth 2.0 |
+
+---
+
+## 🗄️ Struktur Database
+
+Database `ecommerce_kampus` terdiri dari **20 tabel**:
 
 ```
-ecommerce_ci3/
-├── application/
-│   ├── controllers/
-│   │   ├── Auth.php          → Login, logout, Google OAuth
-│   │   ├── Produk.php        → Marketplace, detail produk
-│   │   ├── Toko.php          → Dashboard, CRUD produk, kelola pesanan
-│   │   ├── Keranjang.php     → Keranjang belanja
-│   │   └── Order.php         → Checkout, riwayat, upload bukti bayar
-│   ├── models/
-│   │   ├── User_model.php
-│   │   ├── Produk_model.php
-│   │   ├── Kategori_model.php
-│   │   ├── Keranjang_model.php
-│   │   ├── Zona_model.php
-│   │   └── Order_model.php
-│   ├── views/
-│   │   ├── auth/, produk/, toko/, keranjang/, order/
-│   │   └── layouts/main.php  → Layout utama (navbar + footer)
-│   ├── core/
-│   │   └── MY_Controller.php → Base controller (auth helper)
-│   └── config/
-│       ├── database.php
-│       ├── routes.php
-│       └── google_oauth.php  → Kredensial Google OAuth
-├── system/                    → Core CodeIgniter 3
-├── assets/uploads/            → Folder upload foto produk & bukti bayar
-├── database.sql               → Skema database
-└── PANDUAN_GOOGLE_SSO.md       → Cara membuat Google Client ID & Secret
+users           — Data pengguna (pembeli & penjual)
+kategori        — Kategori produk
+produk          — Data produk
+produk_foto     — Foto produk (multiple)
+produk_variasi  — Variasi produk (ukuran, warna, dll)
+shipping_zones  — Zona pengiriman per penjual
+vouchers        — Data voucher diskon
+voucher_usage   — Riwayat pemakaian voucher
+orders          — Data pesanan
+order_items     — Detail item per pesanan
+cart            — Keranjang belanja
+wishlist        — Produk favorit pembeli
+follow_toko     — Toko yang diikuti pembeli
+ulasan          — Ulasan & rating produk
+komplain        — Komplain pesanan
+chat_rooms      — Room chat pembeli-penjual
+chat_messages   — Pesan chat
+notifikasi      — Notifikasi pengguna
+stok_log        — Log perubahan stok
+konsinyasi      — Sistem titip jual
 ```
 
 ---
 
-## Cara Instalasi
+## 🚀 Cara Instalasi (Localhost)
 
-### 1. Persyaratan
-- PHP 7.4+ dengan ekstensi `curl` dan `mysqli` aktif
-- MySQL / MariaDB
-- Laragon (atau XAMPP)
-- Apache `mod_rewrite` aktif
+### Prasyarat
+- PHP 8.x
+- MySQL 8.0
+- Apache (XAMPP / Laragon)
+- Composer (opsional)
 
-### 2. Setup Database
-1. Buka phpMyAdmin
-2. Import file `database.sql` (otomatis membuat database `ecommerce_kampus` beserta semua tabel dan data awal)
+### Langkah Instalasi
 
-### 3. Konfigurasi Database
+**1. Clone repository**
+```bash
+git clone https://github.com/username/ecommerce-kampus.git
+cd ecommerce-kampus
+```
+
+**2. Pindahkan ke folder web server**
+```
+# XAMPP
+C:\xampp\htdocs\ecommerce_kampus\
+
+# Laragon
+C:\laragon\www\ecommerce_kampus\
+```
+
+**3. Import database**
+```bash
+mysql -u root -p < ecommerce_kampus_clean.sql
+```
+Atau import via phpMyAdmin: buka `http://localhost/phpmyadmin` → Import → pilih file `ecommerce_kampus_clean.sql`
+
+**4. Konfigurasi database**
+
 Edit `application/config/database.php`:
 ```php
-'hostname' => 'localhost',
-'username' => 'root',
-'password' => '',   // sesuaikan
-'database' => 'ecommerce_kampus',
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'ecommerce_kampus';
 ```
 
-### 4. Konfigurasi base_url
+**5. Konfigurasi base URL**
+
 Edit `application/config/config.php`:
 ```php
+# XAMPP
+$config['base_url'] = 'http://localhost/ecommerce_kampus/';
+
+# Laragon
 $config['base_url'] = 'http://ecommerce_kampus.test/';
 ```
-> Sesuaikan dengan domain Laragon kamu, atau `http://localhost/ecommerce_ci3/` jika pakai XAMPP/subfolder.
 
-### 5. Setup Google Sign-In
-Ikuti panduan lengkap di **PANDUAN_GOOGLE_SSO.md** untuk mendapatkan Client ID & Secret, lalu isi di `application/config/google_oauth.php`.
+**6. Konfigurasi Google OAuth (opsional)**
 
-### 6. Jalankan
-Letakkan folder project di `www` (Laragon), lalu akses:
+Edit `application/config/google_oauth.php`:
+```php
+$config['google_client_id']     = 'YOUR_CLIENT_ID';
+$config['google_client_secret'] = 'YOUR_CLIENT_SECRET';
+$config['google_redirect_uri']  = 'http://localhost/ecommerce_kampus/auth/google/callback';
 ```
-http://ecommerce_kampus.test/
+
+**7. Akses aplikasi**
+```
+http://localhost/ecommerce_kampus/
 ```
 
 ---
 
-## Alur Penggunaan
+## 📁 Struktur Folder
 
-**Sebagai Pembeli:**
-1. Login dengan email kampus via Google
-2. Cari & pilih produk → tambah ke keranjang
-3. Checkout per toko → pilih zona pengiriman → isi alamat
-4. Hubungi penjual via WhatsApp (link otomatis)
-5. Upload bukti bayar setelah transfer/QRIS
-
-**Sebagai Penjual:**
-1. Klik "Mulai Berjualan" → isi nama toko & nomor WhatsApp
-2. Tambah produk dari Dashboard Toko
-3. Pantau pesanan masuk → cek bukti bayar → update status pesanan
+```
+ecommerce_kampus/
+├── application/
+│   ├── config/          — Konfigurasi (database, routes, oauth)
+│   ├── controllers/     — Controller (Auth, Produk, Toko, Cart, dll)
+│   ├── models/          — Model (User_model, Produk_model, dll)
+│   ├── views/           — Tampilan (auth, produk, toko, cart, dll)
+│   └── helpers/         — Helper custom (rupiah, tgl_indo)
+├── assets/
+│   ├── css/             — Bootstrap & custom CSS
+│   ├── js/              — JavaScript
+│   └── uploads/         — Upload foto produk & bukti bayar
+├── system/              — Core CodeIgniter 3
+├── .htaccess            — URL rewriting
+└── index.php            — Entry point
+```
 
 ---
 
-## Keamanan yang Diterapkan
-- Validasi domain email mencegah orang luar kampus mendaftar
-- Password tidak disimpan sama sekali (autentikasi murni via Google OAuth)
-- State parameter OAuth untuk mencegah CSRF saat proses login
-- Query Builder CodeIgniter (Active Record) — aman dari SQL Injection, tidak ada query mentah
-- Validasi kepemilikan data (produk/order) di setiap query — penjual hanya bisa mengubah produk/order miliknya sendiri
-- Form validation library CodeIgniter di semua input form
+## 👤 Akun Default
+
+Setelah import database, gunakan akun berikut untuk login:
+
+| Role | Email | Password |
+|------|-------|----------|
+| Penjual | fathah.ikhwansyah@mhs.unsoed.ac.id | (password saat registrasi) |
+
+> ⚠️ Registrasi hanya bisa menggunakan email `@mhs.unsoed.ac.id`
+
+---
+
+## 📸 Screenshot
+
+> *Screenshot akan ditambahkan setelah aplikasi live*
+
+---
+
+## 📄 Lisensi
+
+Project ini dibuat untuk keperluan tugas akhir mata kuliah Pemrograman Web II  
+Universitas Jenderal Soedirman © 2026
