@@ -1,20 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-|--------------------------------------------------------------------------
-| SESUAIKAN dengan konfigurasi MySQL kamu!
-|--------------------------------------------------------------------------
-*/
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'      => '',
     'hostname' => 'localhost',
-    'username' => 'kelas-b_ecommerce',
-    'password' => '12345678',
-    'database' => 'kelas-b_ecommerce',
+    'username' => 'kelas-b_kelompok10',
+    'password' => 'Kampus10!',
+    'database' => 'kelas-b_kelompok10',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
