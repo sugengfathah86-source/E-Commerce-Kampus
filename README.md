@@ -24,7 +24,7 @@
 | Fathah Ikhwansyah | H1H024063 | Backend & Database |
 | Ibnu Abbas | H1H024038 | Frontend & Fitur Transaksi |
 
-**Mata Kuliah:** Pemrograman Web II  
+**Mata Kuliah:** Pemrograman Web I  
 **Dosen Pengampu:** Mohammad Irham Akbar  
 **Kelas:** Pemrograman Web I B  
 **Universitas:** Universitas Jenderal Soedirman
@@ -226,5 +226,5 @@ Setelah import database, gunakan akun berikut untuk login:
 
 ## 📄 Lisensi
 
-Project ini dibuat untuk keperluan tugas akhir mata kuliah Pemrograman Web II  
+Project ini dibuat untuk keperluan tugas akhir mata kuliah Pemrograman Web I  
 Universitas Jenderal Soedirman © 2026
